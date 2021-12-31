@@ -42,6 +42,8 @@ build_all_targets:
 	GOOS=darwin GOARCH=arm64 go test -c -o /dev/null
 	GOOS=freebsd GOARCH=amd64 go build -v ./...
 	GOOS=freebsd GOARCH=amd64 go test -c -o /dev/null
+	GOOS=freebsd GOARCH=386 go build -v ./...
+	GOOS=freebsd GOARCH=386 go test -c -o /dev/null
 	GOOS=linux GOARCH=386 go build -v ./...
 	GOOS=linux GOARCH=386 go test -c -o /dev/null
 	GOOS=linux GOARCH=amd64 go build -v ./...
@@ -93,6 +95,12 @@ darwin_arm64:
 # 3900x/VBox
 freebsd_amd64:
 	@echo "Should be executed only on freebsd/amd64."
+	go generate 2>&1 | tee log-generate
+	go build -v ./...
+
+# 3900x/qemu
+freebsd_386:
+	@echo "Should be executed only on freebsd/386."
 	go generate 2>&1 | tee log-generate
 	go build -v ./...
 
