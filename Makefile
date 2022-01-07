@@ -119,19 +119,19 @@ linux_386:
 # 3900x
 linux_arm:
 	@echo "Should be executed only on linux/amd64."
-	go generate 2>&1 | tee log-generate
+	CCGO_CPP=arm-linux-gnueabi-cpp TARGET_GOARCH=arm TARGET_GOOS=linux go generate 2>&1 | tee log-generate
 	GOOS=linux GOARCH=arm go build -v ./...
 
 # 3900x
 linux_arm64:
 	@echo "Should be executed only on linux/amd64."
-	go generate 2>&1 | tee log-generate
+	CCGO_CPP=aarch64-linux-gnu-cpp TARGET_GOARCH=arm64 TARGET_GOOS=linux go generate 2>&1 | tee log-generate
 	GOOS=linux GOARCH=arm64 go build -v ./...
 
 # 3900x
 linux_s390x:
 	@echo "Should be executed only on linux/amd64."
-	go generate 2>&1 | tee log-generate
+	CCGO_CPP=s390x-linux-gnu-cpp TARGET_GOARCH=s390x TARGET_GOOS=linux go generate 2>&1 | tee log-generate
 	GOOS=linux GOARCH=s390x go build -v ./...
 
 generate_all_targets_on_linux_amd64: linux_amd64 linux_386 linux_arm_on_linux_amd64 linux_arm64 linux_s390x windows_amd64 #TODO windows_386
