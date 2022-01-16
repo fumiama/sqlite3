@@ -1,52 +1,43 @@
 ## Benchmarks
-Generally, benchmarks are conducted against CGo implementation of SQLite (https://github.com/mattn/go-sqlite3).
+The benchmarking is conducted against CGo implementation of SQLite driver (https://github.com/mattn/go-sqlite3).
 
-## Doing benchmarks with go test command
-```console
-go test -bench . -run '^$'
-```
+Benchmark tests are inspired by and closely repeat those described in https://www.sqlite.org/speed.html.
 
-## Doing benchmarks with alternative runner to plot results
+## Doing benchmarks
+Benchmarks are run by custom runner and invoked with
 ```console
 go test -v .
 ```
-Dark color scheme:
-```console
-go test -v . -dark
-```
+Additional command line arguments:
 
-### My results:
+| flag | type | default | description                                                                                     |
+| ---- | ---- | ------- | ----------------------------------------------------------------------------------------------- |
+| -mem | bool | false   | if true: benchmarks will use in-memory SQLite instance,  otherwise: on-disk instance            |
+| -rep | uint | 1       | run each benchmark multiple times and average the results. this may provide more stable results |
 
-#### Insert
-| On disk                                   | In memory                                |
-| :---------------------------------------- | :--------------------------------------- |
-| ![](out/benchmarkInsert_memory_false.png) | ![](out/benchmarkInsert_memory_true.png) |
 
-#### Select
-| On disk                                   | In memory                                |
-| :---------------------------------------- | :--------------------------------------- |
-| ![](out/benchmarkSelect_memory_false.png) | ![](out/benchmarkSelect_memory_true.png) |
+## Current results
+```text
+=== RUN   Test_BenchmarkSQLite
 
-## Adding benchmarks
-A specific type of benchmark function is currently automated:
-```go
-type bechmarkOfNRows func(b *testing.B, db *sql.DB, nRows int)
-```
+goos:   darwin
+goarch: amd64
+cpu:    Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+repeat: 1 time(s)
+in-memory SQLite: false
 
-You can implement benchmark functions of that type, then add them into ```allBenchmarksOfNRows``` variable (see [benchmarks.go](benchmarks.go))
-
-```go
-var allBenchmarksOfNRows = []bechmarkOfNRows{
-	benchmarkInsert, 
-	benchmarkSelect,
-}
-```
-
-Elements of ```allBenchmarksOfNRows``` will be automatically evaluated and plotted when alternative runner is used.
-
-To make implemented benchmark available via go-test, you may write a simple stub like following (see [bench_test.go](bench_test.go)):
-```go
-func BenchmarkSelect(b *testing.B) {
-	doBenchmarkOfNrows(b, benchmarkSelect)
-}
+bench_create_index                  |  1.80x | CGo: 120.880 ms/op | Pure-Go: 217.574 ms/op
+bench_select_on_string_comparison   |  2.25x | CGo:  19.326 ms/op | Pure-Go:  43.498 ms/op
+bench_select_with_index             |  5.84x | CGo:   0.002 ms/op | Pure-Go:   0.014 ms/op
+bench_select_without_index          |  1.50x | CGo:   6.071 ms/op | Pure-Go:   9.111 ms/op
+bench_insert                        |  1.17x | CGo:   0.481 ms/op | Pure-Go:   0.565 ms/op
+bench_insert_in_transaction         |  1.78x | CGo:   0.004 ms/op | Pure-Go:   0.006 ms/op
+bench_insert_into_indexed           |  1.62x | CGo:   0.008 ms/op | Pure-Go:   0.013 ms/op
+bench_insert_from_select            |  1.80x | CGo:  30.409 ms/op | Pure-Go:  54.703 ms/op
+bench_update_text_with_index        |  3.26x | CGo:   0.004 ms/op | Pure-Go:   0.013 ms/op
+bench_update_with_index             |  4.20x | CGo:   0.003 ms/op | Pure-Go:   0.011 ms/op
+bench_update_without_index          |  1.40x | CGo:   6.421 ms/op | Pure-Go:   9.010 ms/op
+bench_delete_without_index          |  1.28x | CGo: 180.734 ms/op | Pure-Go: 231.105 ms/op
+bench_delete_with_index             |  1.85x | CGo:  34.284 ms/op | Pure-Go:  63.569 ms/op
+--- PASS: Test_BenchmarkSQLite (171.62s)
 ```
