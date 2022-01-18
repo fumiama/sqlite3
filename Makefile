@@ -56,6 +56,8 @@ build_all_targets:
 	GOOS=linux GOARCH=s390x go test -c -o /dev/null
 	GOOS=netbsd GOARCH=amd64 go build -v ./...
 	GOOS=netbsd GOARCH=amd64 go test -c -o /dev/null
+	GOOS=openbsd GOARCH=amd64 go build -v ./...
+	GOOS=openbsd GOARCH=amd64 go test -c -o /dev/null
 	GOOS=windows GOARCH=386 go build -v ./...
 	GOOS=windows GOARCH=386 go test -c -o /dev/null
 	GOOS=windows GOARCH=amd64 go build -v ./...
@@ -133,6 +135,12 @@ linux_s390x:
 	@echo "Should be executed only on linux/amd64."
 	CCGO_CPP=s390x-linux-gnu-cpp TARGET_GOARCH=s390x TARGET_GOOS=linux go generate 2>&1 | tee log-generate
 	GOOS=linux GOARCH=s390x go build -v ./...
+
+# 3900x/VBox
+openbsd_amd64:
+	@echo "Should be executed only on openbsd/amd64."
+	go generate 2>&1 | tee log-generate
+	go build -v ./...
 
 generate_all_targets_on_linux_amd64: linux_amd64 linux_386 linux_arm_on_linux_amd64 linux_arm64 linux_s390x windows_amd64 #TODO windows_386
 	gofmt -l -s -w .

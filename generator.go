@@ -399,7 +399,7 @@ func main() {
 	more = append(more, ndebug...)
 	download()
 	switch goos {
-	case "linux", "freebsd":
+	case "linux", "freebsd", "openbsd":
 		configProduction = append(configProduction, "-DSQLITE_OS_UNIX=1")
 	case "netbsd":
 		configProduction = append(configProduction, []string{
@@ -465,7 +465,7 @@ func configure(goos, goarch string) {
 	cmd.Run()
 	var args []string
 	switch goos {
-	case "linux", "freebsd", "netbsd":
+	case "linux", "freebsd", "netbsd", "openbsd":
 		// nop
 	case "darwin":
 		args = append(args, "--with-tcl=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Tcl.framework")
@@ -597,7 +597,7 @@ func makeTestfixture(goos, goarch string, more []string) {
 
 	var defines, includes []string
 	switch goos {
-	case "freebsd":
+	case "freebsd", "openbsd":
 		includes = []string{"-I/usr/local/include/tcl8.6"}
 	case "linux":
 		includes = []string{"-I/usr/include/tcl8.6"}
