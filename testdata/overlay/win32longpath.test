@@ -89,10 +89,10 @@ set uri(1e) file://localhost/$uriPath(3a)\\test.db
 set uri(1f) file://localhost/$uriPath(3b)/test.db
 
 # Starting with Windows 10 v1607 OSBuild 14393, long paths are supported
-# Go 1.17 utilizes this capability and a result this test will fail
+# Go 1.17+ utilizes this capability and a result this test will fail
 # because the path CAN be created.
 
-if {[string first "1.17" $goVer] < 0} {
+if { ([string first "1.17" $goVer] < 0) && ([string first "1.18" $goVer] < 0) } {
 
   do_test 1.3 {
     list [catch {sqlite3 db2 [string range $fileName 4 end]} msg] $msg
