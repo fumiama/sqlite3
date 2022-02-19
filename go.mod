@@ -3,7 +3,7 @@ module github.com/fumiama/sqlite3
 go 1.16
 
 require (
-	golang.org/x/sys v0.0.0-20211007075335-d3039528d8ac
+	golang.org/x/sys v0.0.0-20220209214540-3681064d5158
 	modernc.org/libc v1.14.5
 )
 
