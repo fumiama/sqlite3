@@ -5,6 +5,6 @@
 //go:build !freebsd
 // +build !freebsd
 
-package sqlite // import "modernc.org/sqlite"
+package sqlite // import "github.com/fumiama/sqlite3"
 
 func setMaxOpenFiles(n int) error { return nil }

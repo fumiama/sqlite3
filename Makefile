@@ -147,7 +147,7 @@ generate_all_targets_on_linux_amd64: linux_amd64 linux_386 linux_arm_on_linux_am
 	echo done
 
 tcl_test_wine:
-	GOOS=windows GOARCH=amd64 go build -o testfixture.exe modernc.org/sqlite/internal/testfixture
+	GOOS=windows GOARCH=amd64 go build -o testfixture.exe github.com/fumiama/sqlite3/internal/testfixture
 
 run_tcl_test_wine:
 	TCL_LIBRARY=Z:/home/jnml/src/modernc.org/tcl/assets wine testfixture.exe ./testdata/tcl/zipfile.test

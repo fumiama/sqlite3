@@ -5,7 +5,7 @@
 //go:build darwin
 // +build darwin
 
-package libc2 // import "modernc.org/sqlite/internal/libc2"
+package libc2 // import "github.com/fumiama/sqlite3/internal/libc2"
 
 import (
 	"fmt"

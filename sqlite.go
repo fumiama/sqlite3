@@ -4,7 +4,7 @@
 
 //go:generate go run generator.go
 
-package sqlite // import "modernc.org/sqlite"
+package sqlite // import "github.com/fumiama/sqlite3"
 
 import (
 	"context"
@@ -22,9 +22,9 @@ import (
 	"time"
 	"unsafe"
 
+	sqlite3 "github.com/fumiama/sqlite3/lib"
 	"modernc.org/libc"
 	"modernc.org/libc/sys/types"
-	sqlite3 "modernc.org/sqlite/lib"
 )
 
 var (
