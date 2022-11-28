@@ -8,28 +8,64 @@
 // SQLite is an in-process implementation of a self-contained, serverless,
 // zero-configuration, transactional SQL database engine.
 //
+// Thanks
+//
+// This project is sponsored by Schleibinger Geräte Teubert u. Greim GmbH by
+// allowing one of the maintainers to work on it also in office hours.
+//
 // Supported platforms and architectures
 //
 // These combinations of GOOS and GOARCH are currently supported
 //
 //	OS      Arch    SQLite version
 //	------------------------------
-//	darwin	amd64   3.37.2
-//	darwin	arm64   3.37.2
-//	freebsd	amd64   3.37.2
-//	linux	386     3.37.2
-//	linux	amd64   3.37.2
-//	linux	arm     3.37.2
-//	linux	arm64   3.37.2
-//	windows	amd64   3.37.2
+//	darwin	amd64   3.40.0
+//	darwin	arm64   3.40.0
+//	freebsd	amd64   3.40.0
+//	freebsd	arm64   3.40.0
+//	linux	386     3.40.0
+//	linux	amd64   3.40.0
+//	linux	arm     3.40.0
+//	linux	arm64   3.40.0
+//	linux	ppc64le 3.40.0
+//	linux	riscv64 3.40.0
+//	windows	amd64   3.40.0
+//	windows	arm64   3.40.0
 //
 // Builders
 //
 // Builder results available at
 //
-//	https://modern-c.appspot.com/-/builder/?importpath=modernc.org%2fsqlite
+// https://modern-c.appspot.com/-/builder/?importpath=modernc.org%2fsqlite
 //
 // Changelog
+//
+// 2022-11-28 v1.20.0
+//
+// Support linux/ppc64le.
+//
+// 2022-09-16 v1.19.0:
+//
+// Support frebsd/arm64.
+//
+// 2022-07-26 v1.18.0:
+//
+// Adds support for Go fs.FS based SQLite virtual filesystems, see function New
+// in modernc.org/sqlite/vfs and/or TestVFS in all_test.go
+//
+// 2022-04-24 v1.17.0:
+//
+// Support windows/arm64.
+//
+// 2022-04-04 v1.16.0:
+//
+// Support scalar application defined functions written in Go.
+//
+//  https://www.sqlite.org/appfunc.html
+//
+// 2022-03-13 v1.15.0:
+//
+// Support linux/riscv64.
 //
 // 2021-11-13 v1.14.0:
 //
