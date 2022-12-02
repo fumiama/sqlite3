@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package libc2 // import "github.com/fumiama/sqlite3/internal/libc2"
+package libc2 // import "modernc.org/sqlite/internal/libc2"
 
 var CAPI = map[string]struct{}{
 	"__libc_cond_broadcast":  {},

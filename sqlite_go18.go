@@ -5,7 +5,7 @@
 //go:build go1.8
 // +build go1.8
 
-package sqlite // import "github.com/fumiama/sqlite3"
+package sqlite // import "modernc.org/sqlite"
 
 import (
 	"context"

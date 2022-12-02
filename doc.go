@@ -130,7 +130,7 @@
 //	Number of malloc()  : -1 calls
 //	--- PASS: TestTclTest (1785.04s)
 //	PASS
-//	ok  	github.com/fumiama/sqlite3	1785.041s
+//	ok  	modernc.org/sqlite	1785.041s
 //	$
 //
 // 2020-07-26 v1.4.0-beta1:
@@ -172,7 +172,7 @@
 //	import (
 //		"database/sql"
 //
-//		_ "github.com/fumiama/sqlite3"
+//		_ "modernc.org/sqlite"
 //	)
 //
 //	...
@@ -200,4 +200,4 @@
 // Sqlite documentation
 //
 // See https://sqlite.org/docs.html
-package sqlite // import "github.com/fumiama/sqlite3"
+package sqlite // import "modernc.org/sqlite"

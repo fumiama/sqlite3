@@ -12,8 +12,12 @@ allowing one of the maintainers to work on it also in office hours.
 
 ## Installation
 
-    $ go get github.com/fumiama/sqlite3
+    $ go get modernc.org/sqlite
 
-Documentation: [godoc.org/github.com/fumiama/sqlite3](http://godoc.org/github.com/fumiama/sqlite3)
+## Documentation
+
+[godoc.org/modernc.org/sqlite](http://godoc.org/modernc.org/sqlite)
+
+## Builders
 
 [modern-c.appspot.com/-/builder/?importpath=modernc.org%2fsqlite](https://modern-c.appspot.com/-/builder/?importpath=modernc.org%2fsqlite)

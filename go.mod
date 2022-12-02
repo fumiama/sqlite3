@@ -1,4 +1,4 @@
-module github.com/fumiama/sqlite3
+module modernc.org/sqlite
 
 go 1.17
 
@@ -14,8 +14,6 @@ require (
 	modernc.org/mathutil v1.5.0 // indirect
 	modernc.org/memory v1.4.0 // indirect
 )
-
-replace github.com/remyoudompheng/bigfft => github.com/fumiama/bigfft v0.0.0-20211011143303-6e0bfa3c836b
 
 retract [v1.16.0, v1.17.2] // https://gitlab.com/cznic/sqlite/-/issues/100
 
